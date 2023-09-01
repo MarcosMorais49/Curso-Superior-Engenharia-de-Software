@@ -1,0 +1,248 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
+
+typedef struct dl_elementoLista {
+	char *dado;
+	struct dl_elementoLista *anterior;
+	struct dl_elementoLista *proximo;
+}dl_elemento;
+	
+typedef struct dl_listaDetectada {
+	dl_elemento *inicio;
+	dl_elemento *fim;
+	int tamanho;
+}dl_lista;
+
+int op;
+dl_lista *lista;
+dl_elemento *novo;
+
+int inserir_vazia(char valor) {          //Professor Erinaldo passou como parametro dl_lista *lista, mas nao funcionou   ********************
+				                //Declarei a variável como universal e funcionou perfeitamente     ******************************
+//	if ((novo = malloc(sizeof(novo))) == NULL) {
+//		return -1;
+//	}
+	lista = (dl_lista *) malloc (sizeof(lista));
+	novo = (dl_elemento *) malloc (sizeof(novo));
+	printf("elemento novo %c\n\n", valor);
+//	novo->dado = valor;
+//	strcpy(novo->dado, data);               //Professor Erinaldo fez essa função para copiar, mas o tipo char não funcionou com strcpy ********************
+	novo->anterior = NULL;
+	novo->proximo = NULL;
+	lista->inicio = novo;
+	lista->fim = novo;
+	lista->tamanho++;
+	return 0;
+}
+
+int ins_inicio(/*dl_lista *lista, */ char valor) {
+
+//	dl_elemento *novo;
+//	if ((novo = malloc(sizeof(novo)) == NULL)) {
+//		return -1;
+//	}
+//	strcpy(novo->dado, data);
+	novo->anterior = NULL;
+	novo->proximo = lista->inicio;
+	lista->inicio = novo;
+	lista->tamanho++;
+	return 0;
+}
+
+/*int ins_final(char *data) {
+//	dl_elemento *novo;
+//	if ((novo = malloc(sizeof(novo)) == NULL)) {
+//		return -1;
+//	}
+//	strcpy(novo->dado, data);
+	novo->dado = data;
+			printf("Ate aqui okokok\n\n");
+	novo->proximo = NULL;
+	novo->anterior = lista->fim;
+	lista->fim->proximo = novo;
+	lista->fim = novo;
+	lista->tamanho++;
+	return 0;
+}*/
+
+/*int ins_antes(dl_lista *lista, char *data, int pos) {      //feito por Marcos - Ainda nao corrgido
+	dl_elemento *novo, *temp;
+	int i;
+//	if ((novo = malloc(sizeof(novo)) == NULL)) {
+//		return -1;
+//	}
+	strcpy(novo->dado, data);
+	for (i=0; i<pos; i++) {
+		temp = temp->proximo;
+	}
+	novo->proximo = temp->anterior->proximo;
+	novo->anterior = temp->proximo->anterior;
+	novo->anterior->proximo = novo;
+	novo->proximo->anterior = novo;
+	lista->tamanho++;
+}*/
+
+/*int busca_ini(dl_lista *lista, char *data) {                  //feito por Marcos - Ainda nao corrgido
+	dl_elemento *busca;
+	int i, pos;
+	for (i=0; i < lista->fim; i++) {
+		if (data == *busca->dado ){
+			return busca->dado;
+		}
+	}
+}*/
+
+/*int busca_fim(dl_lista *lista, char *data) {                  //feito por Marcos - Ainda nao corrgido
+	dl_elemento *busca;
+	int i, pos;
+	for (i=lista->fim; i >= lista->inicio; i--) {
+		if (data == *busca->dado ){
+			return busca->dado;
+		}
+	}
+}*/
+
+/*int remove_elemento(dl_lista *lista, char *data, int pos) {                  //feito por Marcos - Ainda nao corrgido
+	int i;
+	dl_elemento *remove, *temp;										//Falta Verificar se a remoção é no inicio ou no fim da lista
+	for (i=0; i<pos; i++) {
+		*remove = *remove->proximo;
+	}
+	*remove->anterior->proximo = *remove->proximo;
+	*remove->proximo->anterior = *remove->anterior;
+	free(remove);
+	lista->tamanho--;
+}Eremove;*/
+
+/*void mostrar_elementos() {
+
+		//				printf("111Ate aqui okokokok... Lista tamamnho = %d \n\n");
+//	dl_lista *lista;
+	//lista = malloc(sizeof(lista));
+	//				printf("Ate aqui okokokok... Lista tamamnho = %d \n\n", lista->tamanho);
+	dl_elemento *temp;
+
+		//		printf("Ate aqui okokokok... Lista tamamnho = %d \n\n", lista->tamanho);
+	int i;
+		//		printf("Ate aqui okokokok... Lista tamamnho = %d \n\n", lista->tamanho);
+	for (i=0; i< lista->tamanho; i++) {
+			printf("Ate aqui okokokok \n\n");
+		printf("Mostrar Elementos %c - \n", novo->dado);
+		novo = novo->proximo;
+	}
+}mElementos;*/
+
+void mostar_menu(){
+		dl_lista *lista;
+//	dl_elemento *elemento, *temp;
+	int i, j;
+	printf("====================Lista Duplamente Encadeada====================\n\n");
+	printf("Menu\n");
+	printf("1 - Inserir elementos no inicio da lista:\n");
+	printf("2 - Inserir elementos no final da lista:\n");
+	printf("3 - Inserir elementos em uma posição determinada: \n");
+	printf("4 - Realizar busca em ordem crescente: \n");
+	printf("5 - Realizar busca em ordem decrescente: \n");
+	printf("6 - Remover elemento: \n");
+	printf("7 - Sair\n");
+	scanf("%d", &op);
+/*		if (op == 3) {
+			system("cls");
+			printf("====================Lista Duplamente Encadeada====================\n\n");			
+			printf("Determine a posição em que deseja inserir o elemento: \n");
+			for (i=0; i < lista->tamanho; i++) {
+				
+				for (j=0; j< lista->tamanho; j++) {
+					printf("%c - ", *elemento->dado);
+					*elemento = *elemento->proximo;
+				}				
+			
+			}
+		}*/
+		
+}
+
+// Tarefas para proxima aula: Fazer busca, exclusao e destruir lista.
+int main(int argc, char *argv[]) {
+	char valor;
+	lista->tamanho = 0;
+	op = 1;
+	mostrar_menu();
+	switch (op){
+		case 1:
+			printf("Digite um caractere para inserir na lista: ");
+			scanf("%s", &valor);
+			if (lista->tamanho == 0) {
+				ins_vazia(valor);
+			}
+			else if (lista->tamanho > 0) {
+				ins_inicio(valor);
+			}
+			else{
+				printf("Tamanho da lista Inválido!\n");
+			}
+			break;
+
+		case 2:
+			break;
+
+		case 3:
+			break;
+
+		case 4:
+			break;
+
+		case 5:
+			break;
+
+		case 6:
+			break;
+
+		case 7:
+			system("exit");
+			break;
+
+		default:
+			printf("Opção Inválida!\n");
+			system("pause");
+	}
+	
+			/*				printf("Digite um caractere para inserir na lista: ");
+							scanf("%s", &valor);
+							inserir_vazia(valor);
+							
+							printf("Digite um caractere para inserir no final da lista: ");
+							scanf("%s", &valor);
+							ins_final(valor);
+							
+							printf(" valor adicionado %c\n\n", novo->dado);
+							printf("3 - Lista tamamnho = %d \n\n", lista->tamanho);
+							mostrar_elementos();
+							system("pause");	*/
+	
+	
+	
+	
+					
+/*	while (op != 0) {		
+		mostrar_menu (list);
+		switch (op){
+			case 0:
+				system("pause");
+				system("exit");
+			break;
+			case 1:
+				printf("Digite um caractere para inserir na lista: ");
+				scanf("%s", &valor);
+				inserir_vazia(list, valor);
+				mostrar_elementos(list);
+				system("pause");
+			break;						
+		}			
+	}  */
+
+ 	
+	return 0;
+}

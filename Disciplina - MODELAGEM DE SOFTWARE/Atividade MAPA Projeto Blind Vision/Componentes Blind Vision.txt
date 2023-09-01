@@ -1,0 +1,16 @@
+Placa arduino
+Sensor Ultrassônico (Detecta distância)
+Sensor piroeletrico (Detecta calor)
+Buzzer (Produz som a partir de 1,5mt)
+Vibracall (Produz vibrações de acordo com a distância)
+
+Arquitetura concorrente e em tempo real / Embarcada, arquitetura centralizada pois tudo é controlado dentro da classe controle
+2 atores (sensor e atuador)
+2 sensores externos (Sensor Piroeletrico[captar calor], sensor ultrassonico[captar distancia])
+
+Aulas 3, 5, 6 e 7 falando sobre o mapa
+
+Diagrama de Casos de Uso - Visão de Contexto
+Diagrama de Classes - Visão Estrutural
+Diagrama de Comunicação - Visão de Interação
+Diagrama de Atividades - Visão Comportamental

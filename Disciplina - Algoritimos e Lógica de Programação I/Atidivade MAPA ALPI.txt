@@ -1,0 +1,101 @@
+Algoritmo CarteiraInvestimento                    
+
+Função definirObjetivo (nomeObj : vetor[1..30] de caracteres)                                        //Essa função irá definir o % de objetivo em cada categoria de investimento, informado pelo usuário
+	Var 
+		perObj : real                                                                        // Variável que recebe o percentual de objetivo informado pelo usuário
+Início
+	Repita   
+		Escreva("Informe o percentual de objetivo para investimento em: ", nomeObj)          //nomeObj é recebido através da passagem de parâmetros, sendo o nome da categoria de investimento que realizou a chamada da função
+		Leia(perObj)                                                                         //Espera que o usuário informe o percentual de objetivo 
+		Se (perObj < 0) Então                                                                //O % de objetivo deve ser igual ou maior que 0, caso seja um numero negativo, o sistema informa ao usuário através da mensagem abaixo
+			Escreval("Valor Inválido! Digite um valor válido ou 0 se não deseja investir nessa categoria.")
+	Ate_que (perObj >= 0)                                                                        //Condição de parada para o laço REPITA, que se encerra quando o usuário informa um perObj válido (maior ou igual a 0)
+	retorna(perObj)                                                                              //Quando o usuário informa um valor válido, a função se encerra retornando o valor de perObj
+Fim_função  
+
+Função valorInvestido(nomeObj : vetor[1..30] de caracteres)                                          //Essa função irá definir o valor que o usuário possui investido em cada categoria, sendo informado pelo usuário
+	var 
+		valInv : real                                                                        //Variável que recebe o valor que o usuário possui investido
+Início
+	Repita
+		escreval("Informe o valor que possui investido na categoria ", nomeObj)              //nomeObj é recebido através da passagem de parâmetros, sendo o nome da categoria de investimento que realizou a chamada da função
+		leia(valInv)                                                                         //O sistema aguar o usuário informar o valor que possui investido na categoria
+		Se (valInv < 0) então                                                                //O valor investido deve ser igual ou maior que 0, caso seja um numero negativo, o sistema informa ao usuário através da mensagem abaixo
+			escreval("Valor Inválido! Digite um valor válido ou 0 se não possui investimento nessa categoria.")
+		fim_se
+	até_que (valInv > 0)                                                                         //Condição de parada para o laço REPITA, que se encerra quando o usuário informa um valInv válido (maior ou igual a 0)
+	retorne(valInv)                                                                              //Quando o usuário informa um valor válido, a função se encerra retornando o valor de perObj
+Fim_função
+
+                                                                                                     //O procedimento abaixo tem a finalidade de verificar a categoria mais desbalanceada, ou seja, que possui a maior diferença entre o que o cliente possui investido e o seu objetivo
+                                                                                                     // Existem vários valores recebidos através da passagem de parâmetros, sendo sCatDes, sNomeCatDes parametros passados por referencia e os outros passados por valor
+Procedimento categoriaDesbalanceada (val1 : Real, val2 : Real, var sCatDes : Real, var sNomeCatDes : vetor[1..30] de caracteres, sCat : vetor[1..30] de caracteres)
+	var
+		dif : real            
+Início
+	dif <- (val1 - val2)                                                                         //Variavel dif, recebe a diferenca entre val1(% de Objetivo) e val2 (% atualmente investido), ambos recebidos por passagem de parametros 
+	Se (dif > sCatDes) então                                                                     //Verifica se a diferenca(dif) é maior que a variável que armazena a categoria mais desbalanceada(sCatDes)
+		sCatDes <- dif                                                                       //Caso a condição acima seja verdadeira, sCatDes recebe a diferenca de val1-val2 através da variável dif
+		sNomeCatDes <- sCat                                                                  //Caso a condição acima seja verdadeira, sNomeCatDes recebe nome da categoria mais desbalanceada através da variável sCat
+	fim_se 
+fim_procedimento
+
+var
+	desc, nomeCatDes : vetor[1..30] de caracteres
+	cdb, acoes, fi, stocks, reits : vetor[1..3] de real                                          //Desclaração de vetores que armazenarão na posicao[1] o % de objetivo, [2] o valor investido, e [3] o percentual atual investido
+	catDes, diferenca, totalInv : real
+Início
+	//Definir o objetivo de investimento em cada categoria
+	Repita                                                                                      //Estrutura repita faz com que o usuário permaneça no laço até que seja informado o total de objetivos igual a 100%
+		desc <- "CDBs"                                                                      //variavel desc recebe a categoria "CDBs", e na linha abaixo passará como parametro para a função definirObjetivos
+		cdb[1] <- definirObjetivos(desc)                                                    //vetor cdb na posição [1] recebe o retorno da função definirObjetivos(desc)
+		desc <- "Ações"                                                                     //variavel desc recebe a categoria "Ações", e na linha abaixo passará como parametro para a função definirObjetivos
+		acoes[1] <- definirObjetivos(desc)                                                  //vetor acoes na posição [1] recebe o retorno da função definirObjetivos(desc)
+		desc <- "Fundos Imobiliários"                                                       //variavel desc recebe a categoria "Fundos Imobiliários", e na linha abaixo passará como parametro para a função definirObjetivos
+		fi[1] <- definirObjetivos(desc)                                                     //vetor fi na posição [1] recebe o retorno da função definirObjetivos(desc)
+		desc <- "Stocks"                                                                    //variavel desc recebe a categoria "Stocks", e na linha abaixo passará como parametro para a função definirObjetivos
+		stocks[1] <- definirObjetivos(desc)                                                 //vetor stocks na posição [1] recebe o retorno da função definirObjetivos(desc)
+		desc <- "Reits"                                                                     //variavel desc recebe a categoria "Reits", e na linha abaixo passará como parametro para a função definirObjetivos
+		reits[1] <- definirObjetivos(desc)                                                  //vetor reits na posição [1] recebe o retorno da função definirObjetivos(desc)
+		Se (cdb[1] + acoes[1] + fi[1] + stocks[1] + reits[1] = 100) então                   //Condição que verifica se o total dos percentuais cadastrados é igual a 100%
+			escreval("Cadastro de objetivos concluído com sucesso!")                    //Caso a condição seja verdadeira, o sistema exibe a mensagem informando o sucesso
+		Senão                                                                               //Caso a condição seja falsa, o sistema exibe a mensagem abaixo
+			escreval("Cadastro não concluído! A soma dos objetivos deve ser 100%.")
+		fim_se
+	até_que (cdb[1] + acoes[1] + fi[1] + stocks[1] + reits[1] = 100)                            //Condição de parada para a estrutura repita, quando todos os objetivos somados sejam = 100%
+
+        //Definir o valor investido em cada categoria
+	desc <- "CDBs"                                                                              //Variável desc recebe o nome da categoria "CDBs", e na linha abaixo passa como parametro para a função valorInvestido
+	cdb[2] <- valorInvestido(desc)                                                              //vetor cdb na posição [2] recebe o retorno da função valorInvestido(desc)
+	desc <- "Ações"                                                                             //Variável desc recebe o nome da categoria "Ações", e na linha abaixo passa como parametro para a função valorInvestido
+	acoes[2] <- valorInvestido(desc)                                                            //vetor acoes na posição [2] recebe o retorno da função valorInvestido(desc)
+	desc <- "Fundos Imobiliários"                                                               //Variável desc recebe o nome da categoria "Fundos Imobiliários", e na linha abaixo passa como parametro para a função valorInvestido
+	fi[2] <- valorInvestido(desc)                                                               //vetor fi na posição [2] recebe o retorno da função valorInvestido(desc)
+	desc <- "Stocks"                                                                            //Variável desc recebe o nome da categoria "Stocks", e na linha abaixo passa como parametro para a função valorInvestido
+	stocks[2] <- valorInvestido(desc)                                                           //vetor stocks na posição [2] recebe o retorno da função valorInvestido(desc)
+	desc <- "Reits"                                                                             //Variável desc recebe o nome da categoria "Reits", e na linha abaixo passa como parametro para a função valorInvestido
+	reits[2] <- valorInvestido(desc)                                                            //vetor reits na posição [2] recebe o retorno da função valorInvestido(desc)
+
+        //armazenar o percentual atualmente investido
+	totalInv <- (cdb[2] + acoes[2] + fi[2] + stocks[2] + reits[2])                              //Para o calculo do %atual, o sistema utiliza a variável totalInv que recebe a soma dos valores atualmente investidos em cada categoria
+	cdb[3] <- ((cdb[2] * 100) / totalInv)       						    //vetor cdb na posição[3] recebe o calculo do percentual investido nesta categoria
+	acoes[3] <- ((acoes[2] * 100) / totalInv)  					            //vetor acoes na posição[3] recebe o calculo do percentual investido nesta categoria
+	fi[3] <- ((fi[2] * 100) / totalInv)                                                         //vetor fi na posição[3] recebe o calculo do percentual investido nesta categoria
+	stocks[3] <- ((stocks[2] * 100) / totalInv)                                                 //vetor stocks na posição[3] recebe o calculo do percentual investido nesta categoria
+	reits[3] <- ((reits[2] * 100) / totalInv)                                                   //vetor reits na posição[3] recebe o calculo do percentual investido nesta categoria
+
+	//mostrar os percentuais do objetivo de investimento e o percentual atual de cada categoria
+	escreval("O objetivo de investimento em CDBs é: ",cdb[1],"% e o percentual atual é: ",cdb[3],"%.")      
+	escreval("O objetivo de investimento em Ações é: ",acoes[1],"% e o percentual atual é: ",acoes[3],"%.")
+	escreval("O objetivo de investimento em Fundos Imobliários é: ",fi[1],"% e o percentual atual é: ",fi[3],"%.")
+	escreval("O objetivo de investimento em Stocks é: ",stocks[1],"% e o percentual atual é: ",stocks[3],"%.")
+	escreval("O objetivo de investimento em Reits é: ",reits[1],"% e o percentual atual é: ",reits[3],"%.")
+
+	//mostrar a categoria mais desbalanceada, ou seja, que possui maior diferença entre o percentual de objetivo e o percentual atualmente investido
+	categoriaDesbalanceada(cdb[1], cdb[3], catDes, nomeCatDes, "CDB")
+	categoriaDesbalanceada(acoes[1], acoes[3], catDes, nomeCatDes, "Ações")
+	categoriaDesbalanceada(fi[1], fi[3], catDes, nomeCatDes, "Fundos Imobiliários")
+	categoriaDesbalanceada(stocks[1], stocks[3], catDes, nomeCatDes, "Stocks")
+	categoriaDesbalanceada(reits[1], reits[3], catDes, nomeCatDes, "Reits")
+	escreval("A categoria mais desbalanceada é ",nomeCatDes," com a diferença de ",catDes,"%.")
+Fim

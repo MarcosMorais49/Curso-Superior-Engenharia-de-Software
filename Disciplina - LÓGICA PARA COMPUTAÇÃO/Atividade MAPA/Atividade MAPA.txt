@@ -1,0 +1,8 @@
+Cicuito para o Quarto
+p.(~p+(q.p))
+
+Circuito para a Sala e a Cozinha
+((a+(~a.b)).b)+(~a.c.~b)
+
+Circuito para a Área Externa
+(a+b).(c+(d.b))

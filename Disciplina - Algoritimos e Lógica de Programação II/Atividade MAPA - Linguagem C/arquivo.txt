@@ -1,0 +1,18 @@
+Paciente: asdasdasdasd 
+CPF: 21312312123 
+Sexo: m 
+Idade: 23 
+Total de pontos: 23 
+---------------------------------------------------------------------------
+Paciente: qqqqqqqqqqqqq 
+CPF: 44444444444 
+Sexo: m 
+Idade: 23 
+Total de pontos: 36 
+---------------------------------------------------------------------------
+Paciente: aaaaaaaaaaaaa 
+CPF: 55555555555555f555! 
+Sexo: f 
+Idade: 33 
+Total de pontos: 21 
+---------------------------------------------------------------------------

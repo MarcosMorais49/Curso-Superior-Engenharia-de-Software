@@ -1,0 +1,19 @@
+algoritmo cobertura
+const
+	PI <- 3.1415 : real
+var 
+	n, i : inteiro
+	area, menorArea, raio : real
+inicio
+	escreva("Informe a quantidade de áreas que deseja calcular: ")
+	leia(n)
+	para i de 1 ate n passo 1 faca
+		escreva("Informe o valor do raio de cobertura em metros: ")
+		leia(raio)
+		area <- PI * (raio * raio)                                //Calculo para a area
+		se ((area < menorArea) ou (i = 1)) entao    //Na primeira execucao da repetição, I = 1, é necessário que ela receba o valor da area, para que assim possa ser feito a comparação com as próximas áreas calculadas
+			menorArea <- area                 //Quando I = 0, OU, quando a area for menor que menorArea, o valor atual da área será atribuido à menorArea  
+		fim_se
+	fim_para
+	escreva("A menor área calculada é: ", menorArea)   //Algoritmo exibe a mensagem com a menor area dentre as informadas pelo usuário
+fim	
